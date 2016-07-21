@@ -1,8 +1,8 @@
-package com.niit.petshop;
+package com.niit.petshop.model;
 
 public class UsersTable {
 	
-	public int user_id; 			//primary key
+	public String user_id; 			//primary key
 	private String user_firstname;
 	private String user_lastname;
 	private String user_email;
@@ -11,10 +11,10 @@ public class UsersTable {
 	private String user_city;
 	private double user_pincode;
 	private String user_country;
-	public int getUser_id() {
+	public String getUser_id() {
 		return user_id;
 	}
-	public void setUser_id(int user_id) {
+	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
 	public String getUser_firstname() {

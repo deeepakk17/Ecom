@@ -1,4 +1,4 @@
-package com.niit.petshop;
+package com.niit.petshop.model;
 
 public class SupplierTable {
 
