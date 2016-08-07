@@ -1,9 +1,10 @@
 package org.niit.dbconnect.controller;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.niit.dbconnect.dao.ProductDAO;
 import org.niit.dbconnect.dao.UserDAO;
+import org.niit.dbconnect.model.ProductTable;
 import org.niit.dbconnect.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class UserController {
+	
+	@Autowired
+	private ProductDAO productDAO;
+	
+	@Autowired
+	private ProductTable productTable;
 	
 	@Autowired
 	private UserDetails userDetails;
@@ -43,7 +50,7 @@ public class UserController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = "/chklogin", method = RequestMethod.POST)
+	/*@RequestMapping(value = "/chklogin", method = RequestMethod.POST)
 	public ModelAndView userloginck(HttpServletRequest req) {
 		String u=req.getParameter("username");
 		String p=req.getParameter("password");
@@ -58,32 +65,55 @@ public class UserController {
 			
 		}
 		
-	}
+	}*/
 	
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView userlogin(@RequestParam("username") String username, @RequestParam("password") String password, HttpSession httpSession) {
-		/*ModelAndView modelAndView = new ModelAndView("home");
-		modelAndView.addObject(username);
-		modelAndView.addObject(password);
-		boolean isvaliduser=userDAO.checkUser();*/
-		
-		
+			
 		boolean isvaliduser =false;
 		UserDetails userDetails=new UserDetails();
 		userDetails.setUsername(username);
 		userDetails.setPassword(password);
 		isvaliduser =userDAO.checkUser(userDetails);
-		ModelAndView modelAndView = new ModelAndView("home");
-		if(isvaliduser==true)
-		{
 		
-		modelAndView.addObject("message", "hello welcome");
-		modelAndView.addObject("name", userDetails.getUsername());
+		if(isvaliduser==true)
+		{					
+		boolean isadmin=userDAO.isAdmin(userDetails);
+		httpSession.setAttribute("loggedInUser",userDetails.getUsername());
+		if(isadmin==true) {
+			ModelAndView modelAndView = new ModelAndView("adminhome");
+			modelAndView.addObject("message", "hello welcome");
+			modelAndView.addObject("name", userDetails.getUsername());
+			return modelAndView;
+		}
+		else {
+			System.out.println("n lgn");
+			ModelAndView modelAndView = new ModelAndView("home");
+			modelAndView.addObject("message", "hello welcome");
+			modelAndView.addObject("productTable", productTable);
+			modelAndView.addObject("productList",this.productDAO.list());
+			
+			modelAndView.addObject("name", userDetails.getUsername());
+			return modelAndView;
+			
+		}
 		
 		}
-		//return mv;
+		else {
+			ModelAndView modelAndView = new ModelAndView("login");
+			modelAndView.addObject("message", "Invalid Credentials");
+			return modelAndView;
+		}
+		
 				
+	
+	}
+	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public ModelAndView userlogoutpage(HttpSession httpSession) {
+		httpSession.setAttribute("loggedInUser",null);
+		ModelAndView modelAndView = new ModelAndView("landing");
 		return modelAndView;
 	}
 

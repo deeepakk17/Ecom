@@ -10,6 +10,10 @@
 <title>List Category</title>
 </head>
 <body>
+<!-- include navigation bar -->
+	<%@ include file="header.jsp"%>
+
+
 	<table align="left" border="1">
 
 		<tr>
@@ -29,5 +33,7 @@
 			</tr>
 		</c:forEach>
 	</table>
+	<!-- include Footer -->
+	<%@ include file="footer.jsp"%>
 </body>
 </html>

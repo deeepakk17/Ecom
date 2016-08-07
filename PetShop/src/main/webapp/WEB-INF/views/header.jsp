@@ -55,11 +55,21 @@
 
 
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href=" <c:url  value="/login"/> "><span
-							class="glyphicon glyphicon-log-in"></span> Login</a></li>
-					<li><a href=" <c:url  value="/register"/> "><span
-							class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-				</ul>
+				
+				<c:choose>
+<c:when test="${empty loggedInUser}">
+<li><a href="<c:url  value="/login"/>"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+  <li><a href="<c:url  value="/register"/> "><span class="glyphicon glyphicon-user"></span> SignUp</a></li>
+  </c:when>
+
+<c:when test="${not empty loggedInUser}">
+      
+      <li><a href="<c:url  value="/logout"/> "><span class="glyphicon glyphicon-user"></span> Logout</a></li>
+      </c:when>
+      </c:choose>
+				
+						
+					</ul>
 			</div>
 		</div>
 	</nav>

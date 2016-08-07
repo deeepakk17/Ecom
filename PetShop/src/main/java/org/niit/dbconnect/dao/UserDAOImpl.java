@@ -28,16 +28,26 @@ public class UserDAOImpl implements UserDAO {
 	public boolean checkUser(UserDetails userDetails) {
 		boolean isvaliduser = false;
 
-		String hql="from USER_DETAILS where USER_NAME= '" + userDetails.getUsername() + "' and PASSWORD='" + userDetails.getPassword() + "'";
+		String hql="from UserDetails where username= '" + userDetails.getUsername() + "' and password='" + userDetails.getPassword() + "'";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		@SuppressWarnings("unchecked")
 		List<UserDetails> list = query.list();
 		int size = list.size();
 		if (size == 1) {
 			isvaliduser = true;
+			
 		}
 
 		return isvaliduser;
+	}
+	
+	@Transactional
+	public boolean isAdmin(UserDetails userDetails) {
+		boolean isadmin=false;
+		if(userDetails.isIsadmin()) {
+			isadmin=true;
+		}
+		return isadmin;
 	}
 
 }

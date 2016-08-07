@@ -69,6 +69,10 @@
 		</div>
 		<!--/carousel slide  -->
 	</div>
+	
+	<%@ include file="userproduct.jsp"%>
+	
+	
 	<!-- include Footer -->
 	<%@ include file="footer.jsp"%>
 

@@ -1,11 +1,15 @@
 package org.niit.dbconnect.model;
 
+
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name="PRODUCT_TABLE")
@@ -24,6 +28,18 @@ public class ProductTable {
 	@Column(name="DESCRIPTION")
 	private String description;
 
+	@Transient
+	MultipartFile multipartFile;
+
+	public MultipartFile getMultipartFile() {
+		return multipartFile;
+	}
+
+	public void setMultipartFile(MultipartFile multipartFile) {
+		this.multipartFile = multipartFile;
+	}
+	
+	
 	public String getId() {
 		return id;
 	}

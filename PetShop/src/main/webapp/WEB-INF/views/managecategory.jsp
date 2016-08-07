@@ -8,6 +8,8 @@
 <title>Manage Categories</title>
 </head>
 <body>
+<!-- include navigation bar -->
+	<%@ include file="header.jsp"%>
 <table>
 ${successmessage}
 <tr>
@@ -19,5 +21,7 @@ ${successmessage}
 </th>
 </tr>
 </table>
+<!-- include Footer -->
+	<%@ include file="footer.jsp"%>
 </body>
 </html>

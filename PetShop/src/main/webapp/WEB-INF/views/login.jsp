@@ -11,7 +11,7 @@
 	<!-- include navigation bar -->
 	<%@ include file="header.jsp"%>
 ${message}
-	<c:url var="login" value="/.chklogin"></c:url>
+	<c:url var="login" value="/login"></c:url>
 	<form:form action="${login}" method="post">
 		<table >
 			<tr>

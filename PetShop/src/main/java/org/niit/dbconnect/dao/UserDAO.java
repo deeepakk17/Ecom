@@ -12,4 +12,6 @@ public interface UserDAO {
 	/*public void delete(String id);*/
 	
 	public boolean checkUser(UserDetails userDetails);
+
+	public boolean isAdmin(UserDetails userDetails);
 }

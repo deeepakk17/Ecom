@@ -9,7 +9,9 @@
 <title>Welcome Admin</title> 
 </head>
 <body>
-${successmessage}
+<!-- include navigation bar -->
+	<%@ include file="header.jsp"%>
+	
 <table>
 <tr>
 <th>
@@ -21,6 +23,7 @@ ${successmessage}
 </tr>
 
 </table>
-
+<!-- include Footer -->
+	<%@ include file="footer.jsp"%>
 </body>
 </html>

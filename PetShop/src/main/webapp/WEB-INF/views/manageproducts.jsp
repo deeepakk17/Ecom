@@ -9,6 +9,8 @@
 <title>Manage Products</title>
 </head>
 <body>
+<!-- include navigation bar -->
+	<%@ include file="header.jsp"%>
 ${successmessage}
 <table>
 <tr>
@@ -24,7 +26,8 @@ ${successmessage}
 
 	
 
-
+<!-- include Footer -->
+	<%@ include file="footer.jsp"%>
 
 
 </body>
