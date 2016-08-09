@@ -11,9 +11,9 @@
 <title>Add Product</title>
 </head>
 <body>
-<!-- include navigation bar -->
+	<!-- include navigation bar -->
 	<%@ include file="header.jsp"%>
-<%-- <form method="POST" action="uploadFile" enctype="multipart/form-data">
+	<%-- <form method="POST" action="uploadFile" enctype="multipart/form-data">
 		<table>
 		<tr>
 		
@@ -27,8 +27,8 @@
 		</tr>
 		</table>
 	</form> --%>
-	
-	<form action="<c:url value="/addproduct" />" method="post"	 enctype="multipart/form-data">
+
+	<%-- 	<form action="<c:url value="/addproduct" />" method="post"	 enctype="multipart/form-data">
 			<table>
 		
 		<tr>
@@ -72,13 +72,13 @@
 		
 		</table>
 	</form>
-	
-	
-<%-- 	<form:form action="<c:url value="/addproduct" />" method="post"
+	 --%>
+<c:url value="/addproduct" var="addproduct"/>
+	<form:form action="${addproduct}" method="post"
 		modelAttribute="productTable" enctype="multipart/form-data">
-			<table>
-		
-		<tr>
+		<table>
+
+			<tr>
 				<td><form:label path="id">
 						<spring:message text="ID" />
 					</form:label></td>
@@ -114,7 +114,7 @@
 				<td><form:label path="multipartFile">
 						<spring:message text="Select File" />
 					</form:label></td>
-		<td><input type="file" name="file"></td>
+				<td><form:input type="file"  path="multipartFile"/></td>
 			</tr>
 			<tr>
 				<c:if test="${!empty product.name }">
@@ -126,14 +126,15 @@
 
 				<td><input type="reset" value="RESET" /></td>
 			</tr>
-		
+
 		</table>
-	</form:form> --%>
-	
-	
+	</form:form>
+
+
 	<table align="left" border="1px">
 
 		<tr>
+		<th>IMAGE</th>
 			<th>PRODUCT ID</th>
 			<th>PRODUCT NAME</th>
 			<th>PRODUCT DESCRIPTION</th>
@@ -142,6 +143,7 @@
 		</tr>
 		<c:forEach items="${productList}" var="product">
 			<tr>
+				<td>${product.multipartFile}</td>
 				<td>${product.id}</td>
 				<td>${product.name}</td>
 				<td>${product.description}</td>
@@ -150,7 +152,8 @@
 			</tr>
 		</c:forEach>
 	</table>
-<!-- include Footer -->
+	
+	<!-- include Footer -->
 	<%@ include file="footer.jsp"%>
 </body>
 </html>

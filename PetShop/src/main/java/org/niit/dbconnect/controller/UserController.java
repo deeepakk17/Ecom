@@ -71,11 +71,11 @@ public class UserController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView userlogin(@RequestParam("username") String username, @RequestParam("password") String password, HttpSession httpSession) {
 			
-		boolean isvaliduser =false;
+		 
 		UserDetails userDetails=new UserDetails();
 		userDetails.setUsername(username);
 		userDetails.setPassword(password);
-		isvaliduser =userDAO.checkUser(userDetails);
+		boolean isvaliduser =userDAO.checkUser(userDetails);
 		
 		if(isvaliduser==true)
 		{					

@@ -35,6 +35,10 @@ public class UserDetails {
 
 	@Column(name = "ISADMIN")
 	private boolean isadmin;
+	
+	
+
+	
 
 	public String getUsername() {
 		return username;

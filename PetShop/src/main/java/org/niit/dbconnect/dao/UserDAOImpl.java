@@ -43,9 +43,12 @@ public class UserDAOImpl implements UserDAO {
 	
 	@Transactional
 	public boolean isAdmin(UserDetails userDetails) {
-		boolean isadmin=false;
-		if(userDetails.isIsadmin()) {
-			isadmin=true;
+		boolean isadmin ;
+		if(userDetails.getUsername()=="admin") {
+			isadmin = true;
+		}else{
+			
+			isadmin = false;
 		}
 		return isadmin;
 	}
