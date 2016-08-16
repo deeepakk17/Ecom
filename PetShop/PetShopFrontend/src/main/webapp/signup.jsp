@@ -83,18 +83,13 @@
 
 	<div class="content">
 		<fieldset>
-			<legend>Become Member</legend>
-			<!-- for triggering webflow events using links,the eventId to be triggered is given in "href" attribute as:
-				 -->
-			<a href="${flowExecutionUrl}&_eventId_home">Home</a>
-			
-			<form:form role="form" 	modelAttribute="userDetails">
+				<form:form role="form" 	modelAttribute="userDetails">
 
 				<div class="form-group">
 					<form:label path="firstname" class="control-label">
 						<spring:message text="First Name" />
 					</form:label>
-					<form:input path="firstname" />
+					<form:input path="firstname" class="form-control" />
 					<br />
 					<!-- to display validation messages -->
 					<c:forEach

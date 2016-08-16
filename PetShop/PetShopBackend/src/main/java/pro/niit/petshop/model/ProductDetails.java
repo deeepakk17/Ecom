@@ -1,12 +1,13 @@
 package pro.niit.petshop.model;
 
-import java.util.Set;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.springframework.stereotype.Component;
@@ -14,12 +15,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name="PRODUCT_TABLE")
-@Component()
+@Component
 public class ProductDetails {
 	
 	
 		@Id
-		@Size(min = 5, message="Product ID must be atleast 3 characters !")
+		@Size(min = 3,message="Product ID must be atleast 3 characters !")
 		@Column(name="ID")
 		private String id; 
 		
@@ -27,7 +28,7 @@ public class ProductDetails {
 		@Column(name="NAME")
 		private String name;
 		
-		@Size(min = 3,max=6, message="Product price  must be atleast 3 characters !")
+		@NotNull(message="Price cannot be null !")
 		@Column(name="PRICE")
 		private int price;
 		
@@ -35,13 +36,43 @@ public class ProductDetails {
 		@Column(name="DESCRIPTION")
 		private String description;
 
-		@Column(name="CATEGORY")
-		private String category;
-		
 		@Transient
 		MultipartFile multipartFile;
 		
+		@Column(name="LOCATION")
+		private String location;
 		
+		
+		private String categoryname;
+		
+		public String getCategoryname() {
+			return categoryname;
+		}
+
+		public void setCategoryname(String categoryname) {
+			this.categoryname = categoryname;
+		}
+
+		/*@ManyToOne
+		@JoinColumn(name="categoryid", nullable = false, updatable = false, insertable = false)
+		private CategoryDetails category;
+		
+		public CategoryDetails getCategory() {
+			return category;
+		}
+
+		public void setCategory(CategoryDetails category) {
+			this.category = category;
+		}*/
+		
+
+		public String getLocation() {
+			return location;
+		}
+
+		public void setLocation(String location) {
+			this.location = location;
+		}
 
 		public MultipartFile getMultipartFile() {
 			return multipartFile;
@@ -84,17 +115,7 @@ public class ProductDetails {
 			this.description = description;
 		}
 
-		public String getCategory() {
-			return category;
-		}
-
-		public void setCategory(String category) {
-			this.category = category;
-		}
-
 		
 
-			
-		
 		
 }

@@ -95,5 +95,7 @@ public class UserController {
 		ModelAndView modelAndView = new ModelAndView("landing");
 		return modelAndView;
 	}
+	
+	
 
 }

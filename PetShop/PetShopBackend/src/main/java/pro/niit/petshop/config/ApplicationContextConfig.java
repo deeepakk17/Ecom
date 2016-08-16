@@ -14,10 +14,13 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import pro.niit.petshop.dao.CategoryDAO;
+import pro.niit.petshop.dao.CategoryDAOImpl;
 import pro.niit.petshop.dao.UserDAO;
 import pro.niit.petshop.dao.UserDAOImpl;
 import pro.niit.petshop.model.CategoryDetails;
 import pro.niit.petshop.model.ProductDetails;
+import pro.niit.petshop.model.SupplierDetails;
 import pro.niit.petshop.model.UserDetails;
 
 @Configuration
@@ -53,6 +56,7 @@ public class ApplicationContextConfig {
 		sessionBuilder.addAnnotatedClass(UserDetails.class);
 		sessionBuilder.addAnnotatedClass(CategoryDetails.class);
 		sessionBuilder.addAnnotatedClass(ProductDetails.class);
+		sessionBuilder.addAnnotatedClass(SupplierDetails.class);
 
 		return sessionBuilder.buildSessionFactory();
 	}
@@ -64,6 +68,12 @@ public class ApplicationContextConfig {
 
 		return transactionManager;
 	}
+	
+	@Autowired
+    @Bean(name = "categoryDAO")
+    public CategoryDAO getCategoryDao(SessionFactory sessionFactory) {
+    	return new CategoryDAOImpl(sessionFactory);
+    }
 
 	@Autowired
 	@Bean(name = "userDAO")
@@ -71,4 +81,6 @@ public class ApplicationContextConfig {
 
 		return new UserDAOImpl(sessionFactory);
 	}
+	
+	
 }

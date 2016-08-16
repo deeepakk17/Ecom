@@ -12,7 +12,7 @@
 
 	<%@ include file="header.jsp"%>
 	<div class="container">
-		<div class="col-md-4 col-offset-4">
+		<div class="col-md-12" style="padding-left: 10%; padding-right:10%;">
 			<c:url var="login" value="/login"></c:url>
 			<form:form role="form" action="${login}" method="post">
 
@@ -34,6 +34,7 @@
 			</form:form>
 		</div>
 	</div>
+	<hr>
 	<!-- include Footer -->
 	<%@ include file="footer.jsp"%>
 </body>

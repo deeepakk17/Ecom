@@ -18,5 +18,11 @@ public class HomeController {
 	 ModelAndView modelAndView = new ModelAndView("adminhome"); 
 	 return	 modelAndView; 
 	 }
+	 
+	 @RequestMapping("/error") 
+	 public ModelAndView goerrorpage() {
+	 ModelAndView modelAndView = new ModelAndView("404"); 
+	 return	 modelAndView; 
+	 }
 	
 }

@@ -11,17 +11,7 @@
 	<!-- include navigation bar -->
 	<%@ include file="header.jsp"%>
 	
-	<div class="content">
-			<fieldset>
-				<legend>Navigation menu</legend>
-
-				<!-- here the href's value will be used to decide the 
-					 controller to be executed on click of this link.
-					 here "memberShip" is mapped in FlowController mapping -->
-				<a href="registration.obj" style="margin:50;">Become Member</a>
-			</fieldset>
-		</div>
-
+	
 	<!-- include carousel -->
 	<%@ include file="carousel.jsp"%>
 	

@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import pro.niit.petshop.dao.CategoryDAO;
 import pro.niit.petshop.model.CategoryDetails;
 
+
 @Controller
 public class CategoryController {
 
@@ -24,33 +25,30 @@ public class CategoryController {
 	@Autowired
 	private CategoryDAO categoryDAO;
 
-	@RequestMapping(value = "/gomanagecategories")
+	@RequestMapping(value = "/gomanagecategories", method = RequestMethod.GET)
 	public ModelAndView gomanagecategory() {
 		ModelAndView modelAndView = new ModelAndView("managecategory");
+		modelAndView.addObject(categoryDetails);
+		modelAndView.addObject("categoryList", this.categoryDAO.list());
 
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/addcategorypage", method = RequestMethod.GET)
-	public ModelAndView goaddcategory() {
-		ModelAndView modelAndView = new ModelAndView("addcategory");
-		modelAndView.addObject("categoryDetails", categoryDetails);
-		return modelAndView;
-	}
+	
 
 	@RequestMapping(value = "/addcategory", method = RequestMethod.POST)
 	public ModelAndView addcategory(@Valid @ModelAttribute CategoryDetails categoryDetails, BindingResult result) {
 		ModelAndView modelAndView = new ModelAndView();
 
 		if (result.hasErrors()) {
-			modelAndView.addObject("addcategory", "addcategory");
-			return modelAndView;
+			modelAndView.setViewName("addcategory");			
 		} else {
 			categoryDAO.saveOrUpdate(categoryDetails);
 			modelAndView.setViewName("managecategory");
-			modelAndView.addObject("successmessage", "Category Added Successfully");
-			return modelAndView;
+			modelAndView.addObject("successmessage","Category Added Successfully");
 		}
+			return modelAndView;
+		
 	}
 
 	@RequestMapping(value = "/listcategorypage", method = RequestMethod.GET)
@@ -60,20 +58,22 @@ public class CategoryController {
 		return "viewcategory";
 	}
 
-	@RequestMapping(value = "category/delete/{id}")
+	
+	@RequestMapping(value = "/category/delete/{id}")
 	public String deletecategory(@PathVariable("id") String id, Model model) {
 		categoryDAO.delete(id);
-		model.addAttribute("categoryDetails", categoryDetails);
+		model.addAttribute(categoryDetails);
 		model.addAttribute("categoryList", this.categoryDAO.list());
 		return "viewcategory";
 	}
 
-	@RequestMapping(value = "category/edit/{id}")
-	public String editcategory(@PathVariable("id") String id, Model model) {
+	@RequestMapping(value = "/category/edit/{id}")
+	public  ModelAndView editcategory(@PathVariable("id") String id) {
+		ModelAndView modelAndView = new ModelAndView("addcategory");
 		categoryDetails = categoryDAO.get(id);
-		model.addAttribute("categoryDetails", categoryDetails);
-		model.addAttribute("categoryList", this.categoryDAO.list());
-		return "addcategory";
+		modelAndView.addObject(categoryDetails);
+		
+		return modelAndView;
 	}
 
 }

@@ -29,9 +29,8 @@
 <!-- favicon -->
 <link rel="shortcut icon" href="assets/images/ico/favicon.ico">
 </head>
-<body>
 
-	<!-- Navigation bar on top -->
+<!-- Navigation bar on top -->
 <body class="landingpage" style="background-color: black">
 	<header id="header">
 
@@ -77,43 +76,43 @@
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					
+
 					<a class="navbar-brand" href="<c:url value="/adminhome" />"><img
 						src="assets/images/logo.png" alt="logo"></a>
 				</div>
 				<div class="collapse navbar-collapse navbar-right">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="#">Home</a></li>
+						<li class="active"><a href="<c:url value = "/error" />">Home</a></li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown">Pets <i class="fa fa-angle-down"></i></a>
 							<ul class="dropdown-menu">
 								<li class="dropdown">
-								<li><a href="#">Dogs</a></li>
-								<li><a href="#">Cats</a></li>
-								<li><a href="#">Birds</a></li>
-								<li><a href="#">Fishes</a></li>
+								<li><a href="<c:url value = "/goviewpets" />">Dogs</a></li>
+								<li><a href="<c:url value = "/error" />">Cats</a></li>
+								<li><a href="<c:url value = "/error" />">Birds</a></li>
+								<li><a href="<c:url value = "/error" />">Fishes</a></li>
 							</ul></li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown">Accessories <i
 								class="fa fa-angle-down"></i></a>
 							<ul class="dropdown-menu">
-								<li><a href="#">Dogs</a></li>
-								<li><a href="#">Cats</a></li>
-								<li><a href="#">Birds</a></li>
-								<li><a href="#">Fishes</a></li>
+								<li><a href="<c:url value = "/error" />">Dogs</a></li>
+								<li><a href="<c:url value = "/error" />">Cats</a></li>
+								<li><a href="<c:url value = "/error" />">Birds</a></li>
+								<li><a href="<c:url value = "/error" />">Fishes</a></li>
 							</ul></li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown">Services <i class="fa fa-angle-down"></i></a>
 							<ul class="dropdown-menu">
-								<li><a href="#">Spa</a></li>
+								<li><a href="/error">Spa</a></li>
 							</ul></li>
 						<li><a href="#">About Us</a></li>
 						<c:choose>
 							<c:when test="${empty loggedInUser}">
 								<li><a href="<c:url  value="/login"/>"><span
 										class="fa fa-sign-in"></span> Login</a></li>
-								<li><a href="<c:url  value="/register"/> "><span
-										class="fa fa-user"></span> SignUp</a></li>
+								<li><a href="registration.obj"><span class="fa fa-user"></span>
+										SignUp</a></li>
 							</c:when>
 
 							<c:when test="${not empty loggedInUser}">

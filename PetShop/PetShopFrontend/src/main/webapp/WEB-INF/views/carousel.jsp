@@ -11,7 +11,7 @@
 <!-- Carousel slider -->
 <section id="Carouselbox"  style="padding-left: 10%; padding-right:10%; background-color: black" >
 <div class="container-fluid">
-<div id="Carousel" class="carousel slide carousel-fade ">
+<div id="Carousel" class="carousel slide ">
         <ol class="carousel-indicators" style="padding-left:0%">
             <li data-target="#Carousel" data-slide-to="0" class="active"></li>
             <li data-target="#Carousel" data-slide-to="1"></li>

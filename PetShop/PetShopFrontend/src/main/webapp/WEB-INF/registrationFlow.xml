@@ -1,38 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <flow xmlns="http://www.springframework.org/schema/webflow"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.springframework.org/schema/webflow
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
                           http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
- 
+
 	<!-- Executed when webFlow is triggered -->
 	<on-start>
-	<!-- UserController is java class available through annotated UserController.java class.here we are calling it’s initFlow() method. -->
-	  <evaluate expression="userDetails.initFlow()" result="flowScope.userDetails"/>
+		<!-- UserHandler is java class available through annotated UserHandler.java 
+			class.here we are calling it’s initFlow() method. -->
+		<evaluate expression="userHandler.initFlow()" result="flowScope.userDetails" />
 	</on-start>
- 
-	 <!-- if not specified the first view state is the starting state -->
+
+	<!-- if not specified the first view state is the starting state -->
 	<view-state id="start" view="signup" model="flowScope.userDetails">
-	   <transition on="submit" to="validate"/>
+		<transition on="submit" to="validate" />
 	</view-state>
- 
+
 	<action-state id="validate">
-		<evaluate expression="userDetails.validateDetails(userDetails,messageContext)"></evaluate>
+		<evaluate expression="userHandler.validateDetails(userDetails,messageContext)"></evaluate>
 		<transition on="success" to="confirmUserDetails" />
 		<transition on="failure" to="start" />
 	</action-state>
- 
-	<view-state id="confirmUserDetails" view="confirmUserDetails" model="flowScope.userDetails">
+
+	<view-state id="confirmUserDetails" view="confirmUserDetails"
+		model="flowScope.userDetails">
 		<transition on="edit" to="start" />
-		<transition on="submit" to="home" />
+		<transition on="submit" to="register" />
 	</view-state>
- 
-	<end-state id="home" view="home" />
+
+	<action-state id="register">
+		<evaluate expression="userHandler.saveDetails(userDetails)"></evaluate>
+		<transition  to="homepage" />
+	</action-state>
+
+
+	<end-state id="homepage" view="home" />
 	<end-state id="toHome" view="externalRedirect:contextRelative:landing.jsp" />
-	<end-state id="toException" view="externalRedirect:contextRelative:exception.jsp" />
- 
-	<!-- these events are available in every state-->
-	<global-transitions>
+	<end-state id="toException"
+		view="externalRedirect:contextRelative:exception.jsp" />
+
+	<!-- these events are available in every state -->
+	<!-- <global-transitions>
 		<transition on="home" to="toHome" />
 		<transition on="error" to="toException" />
-	</global-transitions>
+	</global-transitions> -->
 </flow>

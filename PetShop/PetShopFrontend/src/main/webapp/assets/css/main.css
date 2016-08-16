@@ -7,30 +7,5 @@
 
 
 
-.carousel-fade .carousel-inner .item {
-  opacity: 0;
-  -webkit-transition-property: opacity;
-  -moz-transition-property: opacity;
-  -o-transition-property: opacity;
-  transition-property: opacity;
-}
-.carousel-fade .carousel-inner .active {
-  opacity: 1;
-}
-.carousel-fade .carousel-inner .active.left,
-.carousel-fade .carousel-inner .active.right {
-  left: 0;
-  opacity: 0;
-  z-index: 1;
-}
-.carousel-fade .carousel-inner .next.left,
-.carousel-fade .carousel-inner .prev.right {
-  opacity: 1;
-}
-/* .carousel-fade .carousel-control {
-  z-index: 2;
-} */
 
-/* #carousel-slider .carousel-control{width:inherit;}#carousel-slider .carousel-control.left i{left:-25px}#carousel-slider .carousel-control.right i{right:-25px;}#carousel-slider .carousel-control.left,#carousel-slider .carousel-control.right{background:none;} */
-
- #Carousel .prev,#Carousel .next{position:absolute;top:50%;background-color:#c52d2f;color:#fff;display:inline-block;margin-top:-25px;height:40px;line-height:40px;width:40px;line-height:40px;text-align:center;border-radius:4px;z-index:5;}#Carousel .prev:hover,#Carousel .next:hover{background-color:#000;}#Carousel .prev{left:0px;}#Carousel .next{right:10px;}
+ #Carousel .prev{position:absolute;top:50%;background-color:#c52d2f;color:#fff;display:inline-block;margin-top:-25px;height:40px;line-height:40px;width:40px;line-height:40px;text-align:center;border-radius:4px;z-index:5;}#Carousel .prev:hover,#Carousel .next:hover{background-color:#000;}#Carousel .prev{left:0px;}#Carousel .next{right:10px;}

@@ -10,15 +10,22 @@
 </head>
 <body>
 <!-- include navigation bar -->
-	<%@ include file="header.jsp"%>
+<%@ include file="header.jsp"%>
 	
 <table>
 <tr>
 <th>
-<a href="<c:url value="/addproductpage"></c:url>" > Manage Product </a>
+<a href="<c:url value="/gomanageproducts"></c:url>" > Manage Product </a>
 </th>
+</tr>
+<tr>
 <th>
 <a href="<c:url value="/gomanagecategories"></c:url>" > Manage Category </a>
+</th>
+</tr>
+<tr>
+<th>
+<a href="<c:url value="/gomanagesupplier"></c:url>" > Manage Supplier </a>
 </th>
 </tr>
 
