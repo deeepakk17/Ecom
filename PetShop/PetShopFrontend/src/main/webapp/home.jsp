@@ -20,10 +20,10 @@ ${successmessage}
 				<!-- here the href's value will be used to decide the 
 					 controller to be executed on click of this link.
 					 here "home" is mapped in spring mvc controller-->
-				<a href="/home">Home</a>
+				
 				<br /><br />
 				<h2><!-- display the userId just entered -->
-				Welcome ${userDetails.username() }</h2>
+				</h2>
 				<br/>
 			</fieldset>
 

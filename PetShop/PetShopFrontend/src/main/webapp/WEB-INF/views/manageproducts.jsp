@@ -19,9 +19,14 @@
 			</h1>
 		</div>
 	</div>
+	<div class="col-lg-12">
+		<input type="button" class="btn btn-primary" value="BACK"
+			onclick="javascript:history.back()" />
+	</div>
 
 	<div class="container">
 		<div class="row">
+
 			<div class="col-md-3">
 				<c:url value="/addproduct" var="addproduct" />
 				<form:form role="form" action="${addproduct}" method="post"

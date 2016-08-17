@@ -82,7 +82,7 @@
 
 
 	<div class="content">
-		<fieldset>
+		
 				<form:form role="form" 	modelAttribute="userDetails">
 
 				<div class="form-group">
@@ -181,9 +181,9 @@
 				</div>
 				<br />
 			</form:form>
-		</fieldset>
+		
 	</div>
-	\
+	
 
 <%-- 
 	<!-- include Footer -->

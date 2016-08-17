@@ -33,7 +33,7 @@ public class UserDetails implements Serializable {
 	
 	@Id
 	//@Size(min = 3, message = "Username must be atleast 3 characters !")
-	@Column(name = "USER_NAME", unique = true, columnDefinition = "varchar(15)")
+	@Column(name = "USER_NAME", columnDefinition = "varchar(15)")
 	private String username;
 
 	//@Size(min = 3, message = "Firstname must be atleast 3 characters !")
@@ -57,8 +57,18 @@ public class UserDetails implements Serializable {
 	@Column(name = "CONFIRM_PASSWORD", columnDefinition = "varchar(15)")
 	private String confirmpassword;
 
-	@Column(name = "ISADMIN", columnDefinition = "number(1)")
-	private int isadmin = 0;
+	@Column(name = "ENABLED",nullable=false)
+	private boolean enabled = true;
+
+	
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
 
 	public String getUsername() {
 		return username;
@@ -108,13 +118,16 @@ public class UserDetails implements Serializable {
 		this.confirmpassword = confirmpassword;
 	}
 
-	public int getIsadmin() {
-		return isadmin;
+	@Override
+	public String toString() {
+		return "UserDetails [username=" + username + ", firstname=" + firstname + ", lastname=" + lastname
+				+ ", mobilenumber=" + mobilenumber + ", password=" + password + ", confirmpassword=" + confirmpassword
+				+ ", enabled=" + enabled + "]";
 	}
 
-	public void setIsadmin(int isadmin) {
-		this.isadmin = isadmin;
-	}
+	
+
+	
 
 	
 

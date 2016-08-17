@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import pro.niit.petshop.dao.SupplierDAO;
 import pro.niit.petshop.handler.FileHandler;
-import pro.niit.petshop.model.FileUpload;
+
 import pro.niit.petshop.model.SupplierDetails;
 
 

@@ -39,7 +39,7 @@
 			<c:forEach items="${productList}" var="product">
 				<div class="col-md-3 portfolio-item">
 					<div align="center">
-						<img src="assets/images/product/${product.id}"  class="img-responsive"
+						<img src="/assets/images/products/${product.id}.jpg"  class="img-responsive"
 							alt="${product.name}" />
 					</div>
 

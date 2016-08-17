@@ -52,6 +52,7 @@ public class ProductController {
 		if (result.hasErrors()) {
 
 			modelAndView.setViewName("manageproducts");
+			modelAndView.addObject("productList", this.productDAO.list());
 		} else {
 
 			MultipartFile file = productDetails.getMultipartFile();
@@ -69,8 +70,8 @@ public class ProductController {
 
 	@RequestMapping(value = "/product/delete/{id}")
 	public ModelAndView deleteproduct(@PathVariable("id") String id) {
-		ModelAndView modelAndView = new ModelAndView("manageproducts");
 		productDAO.delete(id);
+		ModelAndView modelAndView = new ModelAndView("manageproducts");
 		// modelAndView.addObject(productDetails);
 		modelAndView.addObject("productList", this.productDAO.list());
 		return modelAndView;

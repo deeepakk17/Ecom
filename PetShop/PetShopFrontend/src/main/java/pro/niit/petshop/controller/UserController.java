@@ -4,6 +4,9 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,13 +26,49 @@ public class UserController {
 
 	@Autowired
 	private UserDAO userDAO;
-
+	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public ModelAndView login(@RequestParam(value = "error", required = false) String error,
+		@RequestParam(value = "logout", required = false) String logout) {
+
+	  ModelAndView model = new ModelAndView();
+	  if (error != null) {
+		model.addObject("error", "Invalid username and password!");
+	  }
+
+	  if (logout != null) {
+		model.addObject("msg", "You've been logged out successfully.");
+	  }
+	  model.setViewName("login");
+
+	  return model;
+
+	}
+	
+	//for 403 access denied page
+		@RequestMapping(value = "/403", method = RequestMethod.GET)
+		public ModelAndView accesssDenied() {
+
+		  ModelAndView model = new ModelAndView();
+
+		  //check if user is login
+		  Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		  if (!(auth instanceof AnonymousAuthenticationToken)) {
+			UserDetails userDetail = (UserDetails) auth.getPrincipal();
+			model.addObject("username", userDetail.getUsername());
+		  }
+
+		  model.setViewName("403");
+		  return model;
+
+		}
+
+	/*@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView userloginpage() {
 		ModelAndView modelAndView = new ModelAndView("login");
 		modelAndView.addObject("isUserClickedLoginHere", true);
 		return modelAndView;
-	}
+	}*/
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public ModelAndView userregisterpage() {
@@ -54,7 +93,7 @@ public class UserController {
 		return modelAndView;
 
 	}
-
+/*
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView userlogin(@RequestParam("username") String username, @RequestParam("password") String password,
 			HttpSession httpSession) {
@@ -88,7 +127,7 @@ public class UserController {
 		}
 
 	}
-
+*/
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public ModelAndView userlogoutpage(HttpSession httpSession) {
 		httpSession.setAttribute("loggedInUser", null);
